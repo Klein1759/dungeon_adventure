@@ -44,6 +44,129 @@ public class Character_Information {
         char_armor = c_a;
     }
     
+    //set character level
+    public void set_char_level(int lvl){
+        char_level = lvl;
+    }
+    
+    //get character level
+    public int get_char_lvl(){
+        return char_level;
+    }
+    
+    //set character hit points
+    public void set_char_hp(int hp){
+        char_hp = hp;
+    }
+    
+    //get character hit points
+    public int get_char_hp(){
+        return char_hp;
+    }
+    
+    //set character strength
+    public void set_char_str(int str){
+        char_str = str;
+    }
+    
+    //get character strength
+    public int get_char_str(){
+        return char_str;
+    }
+    
+    //set character intelligence
+    public void set_char_int(int intelli){
+        char_int = intelli;
+    }
+    
+    //get character intelligence
+    public int get_char_int(){
+        return char_int;
+    }
+    
+    //set character gold
+    public void set_char_gold(int gold){
+        char_gold = gold;
+    }
+    
+    //get character gold
+    public int get_char_gold(){
+        return char_gold;
+    }
+    
+    //set character experience
+    public void set_char_xp(int xp){
+        char_xp = xp;
+    }
+    
+    //get character experience
+    public int get_char_xp(){
+        return char_xp;
+    }
+    
+    //set character mxx hp
+    public void set_char_hp_max(int max){
+        char_hp_max = max;        
+    }
+    
+    //get character max hp
+    public int get_char_hp_max(){
+        return char_hp_max;
+    }
+    
+    //set character weapon damage
+    public void set_char_weapon_dmg(int dam){
+        char_weapon_dmg = dam;
+    }
+    
+    //get character weapon damage
+    public int get_char_weapon_dmg(){
+        return char_weapon_dmg;
+    }
+    
+    //set character armor class
+    public void set_char_armor_class(int ac){
+        char_armor_class = ac;
+    }
+    
+    //get character armor class
+    public int get_char_armor_class(){
+        return char_armor_class;
+    }
+    
+    //set character weapon name
+    public void set_char_weapon(String wep){
+        char_weapon = wep;
+    }
+    
+    //get character weapon name
+    public String get_char_weapon(){
+        return char_weapon;
+    }
+    
+    //set characeter armor name
+    public void set_char_armor(String arm){
+        char_armor = arm;
+    }
+    
+    //get character armor name
+    public String get_char_armor(){
+        return char_armor;
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     
     
     
