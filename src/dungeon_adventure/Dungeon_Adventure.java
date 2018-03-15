@@ -18,7 +18,9 @@ import javax.swing.KeyStroke;
  * @version 1.0
  */
 public class Dungeon_Adventure {
-    public static Dungeon_Adventure_Display Dungeon_Display;
+    static Dungeon_Adventure_Display Dungeon_Display;
+    static Dungeon_Level Dungeon_Info;
+    static String info;
     /**
      * @param args the command line arguments
      */
@@ -33,7 +35,7 @@ public class Dungeon_Adventure {
         Dungeon_Display = new Dungeon_Adventure_Display();
         Dungeon_Display.change_image("square_1.jpg");
         Dungeon_Display.add_text(welcome_text);
-        
+                     
         //Input Maps for arrow keys
         Dungeon_Display.dungeon_panel.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke(KeyEvent.VK_UP, 0), "move_forward");
         Dungeon_Display.dungeon_panel.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke(KeyEvent.VK_LEFT, 0), "turn_left");
