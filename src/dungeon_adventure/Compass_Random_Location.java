@@ -20,8 +20,8 @@ public class Compass_Random_Location extends Compass_Location {
     Random random_number = new Random();
     
 
-    public Compass_Random_Location(int l_bottom, int x_end, int y_end, int l, int x, int y, int n_w, int e_w, int s_w, int w_w, String direction) {
-        super(l_bottom, x_end, y_end, l, x, y, n_w, e_w, s_w, w_w, direction);
+    public Compass_Random_Location(int l, int x, int y, int n_w, int e_w, int s_w, int w_w, int dir, String direction) {
+        super(l, x, y, n_w, e_w, s_w, w_w, dir, direction);
     }
     
      //Set random level

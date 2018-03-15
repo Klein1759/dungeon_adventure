@@ -14,23 +14,19 @@ package dungeon_adventure;
 public class Compass_Location {
 
     private int level;
-    private int level_end = 0;
     private int x_location = 0;
     private int y_location = 0;
-    private int x_size = 0;
-    private int y_size = 0;
     private int north_wall;
     private int east_wall;
     private int south_wall;
     private int west_wall;
-    private String facing_direction;
+    private int direction; //north = 0, east = 1, south = 2, west = 3
+    private String direction_name;
     
     
     
-    public Compass_Location(int l_bottom, int x_end, int y_end, int l, int x, int y, int n_w, int e_w, int s_w, int w_w, String direction){
-        this.level_end = l_bottom;
-        this.y_size = y_end;
-        this.x_size = x_end;
+    public Compass_Location(int l, int x, int y, int n_w, int e_w, int s_w, int w_w, int dir, String direction){
+        
         this.level = l;
         this.x_location = x;
         this.y_location = y;
@@ -38,17 +34,28 @@ public class Compass_Location {
         this.east_wall = e_w;
         this.south_wall = s_w;
         this.west_wall = w_w;
-        this.facing_direction = direction;        
+        this.direction = dir;
+        this.direction_name = direction;        
     }
     
-    //get facing direction
-    public String get_direction() {
-        return facing_direction;
+    //set direction
+    public void set_direction(int dir){
+        direction = dir;
     }
     
-    //set facing direction
-    public void set_direction(String new_direction) {
-        facing_direction = new_direction;
+    //get direction
+    public int get_direction(){
+        return direction;
+    }
+    
+    //get direction name
+    public String get_direction_name() {
+        return direction_name;
+    }
+    
+    //set direction name
+    public void set_direction_name(String new_direction) {
+        direction_name = new_direction;
     }
     
     //set x location
@@ -120,15 +127,6 @@ public class Compass_Location {
     public boolean get_west_wall() {
         return (west_wall != 0);
     }
-    
-    //set facing direction
-    public void set_facing_direction(String f_d){
-        facing_direction = f_d;
-    }
-    
-    //get facing direction
-    public String get_facing_direction(){
-        return facing_direction;
-    }
+  
     
 }
