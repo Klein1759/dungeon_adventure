@@ -23,13 +23,16 @@ public class Dungeon_Adventure {
     static String info;
     static Compass_Location coords;
     static String facing;
+    static int left_wall, right_wall, front_wall;
     /**
      * @param args the command line arguments
      */
     public static void main(String[] args) {
         
         game_initialization();
-        game_engine();
+        where_walls();
+        display_location();
+        game_key_processing();
     }
 
     public static void game_initialization() {
@@ -37,10 +40,12 @@ public class Dungeon_Adventure {
         Dungeon_Display = new Dungeon_Adventure_Display();
         Dungeon_Display.add_text(welcome_text);
         
+        Dungeon_Info = new Dungeon_Level();
+        
         coords = new Compass_Location(0,0,0,0,1,1,1,0,"North");
         facing = "Facing" + coords.get_direction_name() + "\n";
         Dungeon_Display.add_text(facing);
-        
+                
         //Input Maps for arrow keys
         Dungeon_Display.dungeon_panel.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke(KeyEvent.VK_UP, 0), "move_forward");
         Dungeon_Display.dungeon_panel.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke(KeyEvent.VK_LEFT, 0), "turn_left");
@@ -49,7 +54,7 @@ public class Dungeon_Adventure {
         
     }
   
-    public static void game_engine() {
+    public static void game_key_processing() {
         //game engine procesing
         //Action Map for each arrow key leading to method for movement
         Dungeon_Display.dungeon_panel.getActionMap().put("move_forward", new AbstractAction() {
@@ -85,5 +90,72 @@ public class Dungeon_Adventure {
     public static void turn_right(){
         
     }
+    
+    public void location_display(){
+        
+    }
+    
+    public static void where_walls(){
+        
+        switch (coords.get_direction()) {
+            
+            case 0:
+                left_wall = Dungeon_Info.dungeon_layout[coords.get_x_location()][coords.get_y_location()][3];
+                right_wall = Dungeon_Info.dungeon_layout[coords.get_x_location()][coords.get_y_location()][1];
+                front_wall = Dungeon_Info.dungeon_layout[coords.get_x_location()][coords.get_y_location()][0];
+                break;
+                
+            case 1:
+                left_wall = Dungeon_Info.dungeon_layout[coords.get_x_location()][coords.get_y_location()][0];
+                right_wall = Dungeon_Info.dungeon_layout[coords.get_x_location()][coords.get_y_location()][2];
+                front_wall = Dungeon_Info.dungeon_layout[coords.get_x_location()][coords.get_y_location()][1];
+                break;
+                
+            case 2:
+                left_wall = Dungeon_Info.dungeon_layout[coords.get_x_location()][coords.get_y_location()][1];
+                right_wall = Dungeon_Info.dungeon_layout[coords.get_x_location()][coords.get_y_location()][3];
+                front_wall = Dungeon_Info.dungeon_layout[coords.get_x_location()][coords.get_y_location()][2];
+                break;
+                
+            case 3:
+                left_wall = Dungeon_Info.dungeon_layout[coords.get_x_location()][coords.get_y_location()][2];
+                right_wall = Dungeon_Info.dungeon_layout[coords.get_x_location()][coords.get_y_location()][0];
+                front_wall = Dungeon_Info.dungeon_layout[coords.get_x_location()][coords.get_y_location()][3];
+                break;
+        }
+    }
+    
+    public static void display_location(){
+        if ((left_wall == 1) && (right_wall ==1) && (front_wall ==1)){
+            Dungeon_Display.change_image("square_1.jpg");
+        } 
+        else if ((left_wall == 1) && (right_wall ==0) && (front_wall ==1)){
+            Dungeon_Display.change_image("square_2.jpg");
+        }
+        else if ((left_wall == 0) && (right_wall ==0) && (front_wall ==1)){
+            Dungeon_Display.change_image("square_3.jpg");
+        }
+        else if ((left_wall == 0) && (right_wall ==1) && (front_wall ==1)){
+            Dungeon_Display.change_image("square_4.jpg");
+        }
+        else if ((left_wall == 1) && (right_wall ==1) && (front_wall ==0)){
+            Dungeon_Display.change_image("square_5.jpg");
+        }
+        else if ((left_wall == 1) && (right_wall ==0) && (front_wall ==0)){
+            Dungeon_Display.change_image("square_6.jpg");
+        }
+        else if ((left_wall == 0) && (right_wall ==1) && (front_wall ==0)){
+            Dungeon_Display.change_image("square_7.jpg");
+        }
+        else if ((left_wall == 0) && (right_wall ==0) && (front_wall ==0)){
+            Dungeon_Display.change_image("square_8.jpg");
+        }
+        
+    
+    
+    
+    
+    }
+    
     
 }

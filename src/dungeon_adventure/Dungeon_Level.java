@@ -27,7 +27,7 @@ package dungeon_adventure;
  */
 public class Dungeon_Level {
     
-    int [][][] dungeon_layout; 
+    final int [][][] dungeon_layout; 
 
     public Dungeon_Level() {
         this.dungeon_layout = new int[][][]{
