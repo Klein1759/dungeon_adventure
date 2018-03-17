@@ -25,7 +25,7 @@ public class Compass_Location {
     
     
     
-    public Compass_Location(int l, int x, int y, int n_w, int e_w, int s_w, int w_w, int dir, String direction){
+    public Compass_Location(int l, int x, int y, int n_w, int e_w, int s_w, int w_w, int dir){
         
         this.level = l;
         this.x_location = x;
@@ -35,7 +35,7 @@ public class Compass_Location {
         this.south_wall = s_w;
         this.west_wall = w_w;
         this.direction = dir;
-        this.direction_name = direction;        
+             
     }
     
     //set direction
@@ -53,9 +53,28 @@ public class Compass_Location {
         return direction_name;
     }
     
-    //set direction name
-    public void set_direction_name(String new_direction) {
-        direction_name = new_direction;
+    //set direction name based on 0=N 1=E 2=S 3=W
+    public void set_direction_name(){
+        
+        switch (this.direction){
+        
+            case 0:
+                direction_name = "North";
+                break;
+            
+            case 1:
+                direction_name = "East";
+                break;
+                
+            case 2:
+                direction_name = "South";
+                break;
+                
+            case 3:
+                direction_name = "West";
+                break;
+        }
+        
     }
     
     //set x location

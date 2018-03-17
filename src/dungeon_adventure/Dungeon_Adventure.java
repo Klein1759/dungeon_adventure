@@ -23,27 +23,29 @@ public class Dungeon_Adventure {
     static String info;
     static Compass_Location coords;
     static String facing;
+    static String location_visual;
     static int left_wall, right_wall, front_wall;
+    static String cant_move_forward = "You hit your head on the wall as you cannot more forward.";
     /**
      * @param args the command line arguments
      */
     public static void main(String[] args) {
         
         game_initialization();
+        game_key_processing();
         
     }
 
     public static void game_initialization() {
         Dungeon_Display = new Dungeon_Adventure_Display();
         Dungeon_Info = new Dungeon_Level();  
-        coords = new Compass_Location(0,0,0,0,1,1,1,0,"North"); //starting location
+        coords = new Compass_Location(0,0,0,0,1,1,1,0); //starting location
                 
         //Input Maps for arrow keys
         Dungeon_Display.dungeon_panel.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke(KeyEvent.VK_UP, 0), "move_forward");
         Dungeon_Display.dungeon_panel.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke(KeyEvent.VK_LEFT, 0), "turn_left");
         Dungeon_Display.dungeon_panel.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke(KeyEvent.VK_RIGHT, 0), "turn_right");
               
-        String location_visual;
         String welcome_text = "Welcome to Dungeon Adventure\nStay a while!\nStay forever!\n";
         Dungeon_Display.add_text(welcome_text);               
         facing = "Facing " + coords.get_direction_name() + "\n";
@@ -52,7 +54,6 @@ public class Dungeon_Adventure {
         where_walls();
         location_visual=location_surrounding_walls();
         Dungeon_Display.change_image(location_visual);
-        game_key_processing();
     }
   
     public static void game_key_processing() {
@@ -82,13 +83,43 @@ public class Dungeon_Adventure {
     
     public static void move_forward(){
         
-    }
-    
-    public static void turn_left(){
+        if (front_wall == 1) {
+            Dungeon_Display.add_text(cant_move_forward + "\n");
+        }
+        else {
+            move_in_facing_direction();            
+        }
+        
+        
+        location_processing();
         
     }
     
+    public static void turn_left(){
+        coords.set_direction(coords.get_direction() - 1);
+        if (coords.get_direction() == -1) {
+            coords.set_direction(3);
+        }
+        
+        location_processing();
+    }
+    
     public static void turn_right(){
+        coords.set_direction(coords.get_direction() + 1);
+        if (coords.get_direction() == 4) {
+            coords.set_direction(0);
+        }
+        
+        location_processing();
+    }
+    
+    public static void location_processing(){
+        coords.set_direction_name();
+        where_walls();
+        location_visual=location_surrounding_walls();
+        Dungeon_Display.change_image(location_visual);
+        facing = "Facing " + coords.get_direction_name() + "\n";
+        Dungeon_Display.add_text(facing);
         
     }
     
@@ -155,5 +186,27 @@ public class Dungeon_Adventure {
     
     }
     
+    public static void move_in_facing_direction(){
+        
+        switch (coords.get_direction()) {
+            
+            case 0:
+                coords.set_x_location(coords.get_x_location()+1);
+                //coords.set_y_location(coords.get_y_location());
+                break;
+                
+            case 1:
+                coords.set_y_location(coords.get_y_location()+1);
+                break;
+                
+            case 2:
+                coords.set_x_location(coords.get_x_location()-1);
+                break;
+                
+            case 3:
+                coords.set_y_location(coords.get_y_location()-1);
+                break;    
+        }
+    }
     
 }
