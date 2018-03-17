@@ -30,28 +30,29 @@ public class Dungeon_Adventure {
     public static void main(String[] args) {
         
         game_initialization();
-        where_walls();
-        display_location();
-        game_key_processing();
+        
     }
 
     public static void game_initialization() {
-        String welcome_text = "Welcome to Dungeon Adventure\nStay a while!\nStay forever!\n";
         Dungeon_Display = new Dungeon_Adventure_Display();
-        Dungeon_Display.add_text(welcome_text);
-        
-        Dungeon_Info = new Dungeon_Level();
-        
-        coords = new Compass_Location(0,0,0,0,1,1,1,0,"North");
-        facing = "Facing" + coords.get_direction_name() + "\n";
-        Dungeon_Display.add_text(facing);
+        Dungeon_Info = new Dungeon_Level();  
+        coords = new Compass_Location(0,0,0,0,1,1,1,0,"North"); //starting location
                 
         //Input Maps for arrow keys
         Dungeon_Display.dungeon_panel.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke(KeyEvent.VK_UP, 0), "move_forward");
         Dungeon_Display.dungeon_panel.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke(KeyEvent.VK_LEFT, 0), "turn_left");
         Dungeon_Display.dungeon_panel.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke(KeyEvent.VK_RIGHT, 0), "turn_right");
               
+        String location_visual;
+        String welcome_text = "Welcome to Dungeon Adventure\nStay a while!\nStay forever!\n";
+        Dungeon_Display.add_text(welcome_text);               
+        facing = "Facing " + coords.get_direction_name() + "\n";
+        Dungeon_Display.add_text(facing);
         
+        where_walls();
+        location_visual=location_surrounding_walls();
+        Dungeon_Display.change_image(location_visual);
+        game_key_processing();
     }
   
     public static void game_key_processing() {
@@ -91,10 +92,7 @@ public class Dungeon_Adventure {
         
     }
     
-    public void location_display(){
-        
-    }
-    
+    //get surrouding wall location with regards to facting direction
     public static void where_walls(){
         
         switch (coords.get_direction()) {
@@ -125,35 +123,35 @@ public class Dungeon_Adventure {
         }
     }
     
-    public static void display_location(){
+    //determine where the walls are based on what's on the right, left and in front
+    public static String location_surrounding_walls(){
         if ((left_wall == 1) && (right_wall ==1) && (front_wall ==1)){
-            Dungeon_Display.change_image("square_1.jpg");
+            return "square_1.jpg";
         } 
         else if ((left_wall == 1) && (right_wall ==0) && (front_wall ==1)){
-            Dungeon_Display.change_image("square_2.jpg");
+            return "square_2.jpg";
         }
         else if ((left_wall == 0) && (right_wall ==0) && (front_wall ==1)){
-            Dungeon_Display.change_image("square_3.jpg");
+            return "square_3.jpg";
         }
         else if ((left_wall == 0) && (right_wall ==1) && (front_wall ==1)){
-            Dungeon_Display.change_image("square_4.jpg");
+            return "square_4.jpg";
         }
         else if ((left_wall == 1) && (right_wall ==1) && (front_wall ==0)){
-            Dungeon_Display.change_image("square_5.jpg");
+            return "square_5.jpg";
         }
         else if ((left_wall == 1) && (right_wall ==0) && (front_wall ==0)){
-            Dungeon_Display.change_image("square_6.jpg");
+            return "square_6.jpg";
         }
         else if ((left_wall == 0) && (right_wall ==1) && (front_wall ==0)){
-            Dungeon_Display.change_image("square_7.jpg");
+            return "square_7.jpg";
         }
         else if ((left_wall == 0) && (right_wall ==0) && (front_wall ==0)){
-            Dungeon_Display.change_image("square_8.jpg");
+            return "square_8.jpg";
         }
         
-    
-    
-    
+        return null;
+     
     
     }
     
