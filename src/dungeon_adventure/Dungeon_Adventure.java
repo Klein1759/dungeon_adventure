@@ -47,7 +47,8 @@ public class Dungeon_Adventure {
         Dungeon_Display.dungeon_panel.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke(KeyEvent.VK_RIGHT, 0), "turn_right");
               
         String welcome_text = "Welcome to Dungeon Adventure\nStay a while!\nStay forever!\n";
-        Dungeon_Display.add_text(welcome_text);               
+        Dungeon_Display.add_text(welcome_text);   
+        coords.set_direction_name();
         facing = "Facing " + coords.get_direction_name() + "\n";
         Dungeon_Display.add_text(facing);
         
@@ -181,7 +182,7 @@ public class Dungeon_Adventure {
             return "square_8.jpg";
         }
         
-        return null;
+        return "Error";
      
     
     }
