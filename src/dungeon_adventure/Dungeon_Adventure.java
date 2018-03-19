@@ -11,6 +11,7 @@ import java.awt.event.KeyEvent;
 import javax.swing.AbstractAction;
 import javax.swing.JComponent;
 import javax.swing.KeyStroke;
+import javax.swing.text.DefaultCaret;
 
 /**
  *
@@ -40,6 +41,8 @@ public class Dungeon_Adventure {
         Dungeon_Display = new Dungeon_Adventure_Display();
         Dungeon_Info = new Dungeon_Level();  
         coords = new Compass_Location(0,0,0,0,1,1,1,0); //starting location
+        DefaultCaret caret = (DefaultCaret)Dungeon_Display.display_box.getCaret();
+        caret.setUpdatePolicy(DefaultCaret.ALWAYS_UPDATE);
                 
         //Input Maps for arrow keys
         Dungeon_Display.dungeon_panel.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke(KeyEvent.VK_UP, 0), "move_forward");

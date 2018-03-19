@@ -16,7 +16,7 @@ import javax.swing.*;
 public class Dungeon_Adventure_Display extends JFrame{
 
     public JPanel dungeon_panel;
-    private final JTextArea display_box;
+    public final JTextArea display_box;
     private final JLabel display_label;
     private final JLabel ac_number;
     private final JLabel str_number;
