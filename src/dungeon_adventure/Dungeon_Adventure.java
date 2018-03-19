@@ -41,6 +41,8 @@ public class Dungeon_Adventure {
         Dungeon_Display = new Dungeon_Adventure_Display();
         Dungeon_Info = new Dungeon_Level();  
         coords = new Compass_Location(0,0,0,0,1,1,1,0); //starting location
+        
+        //auto scroll msgs to the bottom of display box
         DefaultCaret caret = (DefaultCaret)Dungeon_Display.display_box.getCaret();
         caret.setUpdatePolicy(DefaultCaret.ALWAYS_UPDATE);
                 
@@ -49,6 +51,7 @@ public class Dungeon_Adventure {
         Dungeon_Display.dungeon_panel.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke(KeyEvent.VK_LEFT, 0), "turn_left");
         Dungeon_Display.dungeon_panel.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke(KeyEvent.VK_RIGHT, 0), "turn_right");
               
+        //set up game when first loading up
         String welcome_text = "Welcome to Dungeon Adventure\nStay a while!\nStay forever!\n";
         Dungeon_Display.add_text(welcome_text);   
         coords.set_direction_name();
@@ -85,6 +88,7 @@ public class Dungeon_Adventure {
         });
     }
     
+    //move in direction facing unless wall is in the way, then process what the area looks like
     public static void move_forward(){
         
         if (front_wall == 1) {
@@ -92,13 +96,13 @@ public class Dungeon_Adventure {
         }
         else {
             move_in_facing_direction();            
-        }
-        
+        }        
         
         location_processing();
         
     }
     
+    //turn left, set the direction, then process what the area looks like
     public static void turn_left(){
         coords.set_direction(coords.get_direction() - 1);
         if (coords.get_direction() == -1) {
@@ -108,6 +112,7 @@ public class Dungeon_Adventure {
         location_processing();
     }
     
+    //turn right, set the diretion, then process what the area looks like
     public static void turn_right(){
         coords.set_direction(coords.get_direction() + 1);
         if (coords.get_direction() == 4) {
@@ -117,6 +122,7 @@ public class Dungeon_Adventure {
         location_processing();
     }
     
+    //process what the area looks like
     public static void location_processing(){
         coords.set_direction_name();
         where_walls();
@@ -190,13 +196,14 @@ public class Dungeon_Adventure {
     
     }
     
+    //processes movement in facing direction depending on compass direction
+    // 0=North 1=East 2=South 3=West
     public static void move_in_facing_direction(){
         
         switch (coords.get_direction()) {
             
             case 0:
                 coords.set_x_location(coords.get_x_location()+1);
-                //coords.set_y_location(coords.get_y_location());
                 break;
                 
             case 1:
