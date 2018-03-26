@@ -19,19 +19,19 @@ import java.util.Random;
  */
 public class Character_Information {
     
-    int char_level;
-    int char_hp;
-    int char_str;
-    int char_int;
-    int char_gold;
-    int char_xp;
-    int char_hp_max;
-    int char_weapon_dmg;
-    int char_armor_class;
-    String char_weapon;
-    String char_armor;
+    private int char_level;
+    private int char_hp;
+    private int char_str;
+    private int char_int;
+    private int char_gold;
+    private int char_xp;
+    private int char_hp_max;
+    private int char_weapon_dmg;
+    private int char_armor_class;
+    private String char_weapon;
+    private String char_armor;
     
-    Random rand_num = new Random();
+    private Random rand_num = new Random();
     
     
     public Character_Information(){
