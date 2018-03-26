@@ -16,17 +16,17 @@ import javax.swing.*;
 public class Dungeon_Adventure_Display extends JFrame{
 
     public JPanel dungeon_panel;
-    public final JTextArea display_box;
-    private final JLabel display_label;
-    private final JLabel ac_number;
-    private final JLabel str_number;
-    private final JLabel int_number;
-    private final JLabel hp_number;
-    private final JLabel xp_number;
-    private final JLabel lvl_number;
+    public JTextArea display_box;
+    private JLabel display_label;
+    private JLabel ac_number;
+    private JLabel str_number;
+    private JLabel int_number;
+    private JLabel hp_number;
+    private JLabel xp_number;
+    private JLabel lvl_number;
     
     
-    @SuppressWarnings("OverridableMethodCallInConstructor")
+    
     public Dungeon_Adventure_Display(){
         //Set the JFrame
         this.setLayout(null);
@@ -200,7 +200,7 @@ public class Dungeon_Adventure_Display extends JFrame{
     public void set_lvl_number (String lvl_num){
         lvl_number.setText(lvl_num);
     }
-       
+    
     
 }
 

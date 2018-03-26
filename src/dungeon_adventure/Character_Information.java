@@ -5,6 +5,8 @@
  */
 package dungeon_adventure;
 
+import java.util.Random;
+
 /**
  *
  * @author Scott Klein
@@ -29,19 +31,23 @@ public class Character_Information {
     String char_weapon;
     String char_armor;
     
+    Random rand_num = new Random();
     
-    public Character_Information(int c_l, int c_h, int c_s, int c_i, int c_g, int c_x, int c_h_m, int c_w_d, int c_a_c, String c_w, String c_a){
-        char_level = c_l;
-        char_hp = c_h;
-        char_str = c_s;
-        char_int = c_i;
-        char_gold = c_g;
-        char_xp = c_x;
-        char_hp_max = c_h_m;
-        char_weapon_dmg = c_w_d;
-        char_armor_class = c_a_c;
-        char_weapon = c_w;
-        char_armor = c_a;
+    
+    public Character_Information(){
+        char_level = 0;
+        char_hp = rand_num.nextInt(10)+1; //randomize this 10/level
+        char_str = 1; //randomize this
+        char_int = 1; //randomize this
+        char_gold = 0;
+        char_xp = 0;
+        char_hp_max = char_hp;
+        char_weapon_dmg = 6;
+        char_armor_class = 10;
+        //char_weapon = c_w;
+        //char_armor = c_a;
+        
+        level_up();
     }
     
     //set character level
@@ -154,7 +160,46 @@ public class Character_Information {
         return char_armor;
     }
     
+    //check against current level and xp to see if a new level is warranted
+    public void check_xp(){
+        if ((char_xp >= 200) && (char_xp < 400) && (char_level == 1)){
+            level_up();
+        }
+        else if ((char_xp >= 400) && (char_xp < 800) && (char_level == 2)){
+            level_up();
+        }
+        else if ((char_xp >= 800) && (char_xp < 1600) && (char_level == 3)){
+            level_up();
+        }
+        else if ((char_xp >= 1600) && (char_xp < 3200) && (char_level == 4)){
+            level_up();
+        }
+        else if ((char_xp >= 3200) && (char_xp < 6400) && (char_level == 5)){
+            level_up();
+        }
+        else if ((char_xp >= 6400) && (char_xp < 12800) && (char_level == 6)){
+            level_up();
+        }
+        else if ((char_xp >= 12800) && (char_xp < 25600) && (char_level == 7)){
+            level_up();
+        }
+        else if ((char_xp >= 25600) && (char_xp < 53200) && (char_level == 8)){
+            level_up();
+        }
+        else if ((char_xp >= 53200) && (char_level == 9)){
+            level_up();
+        }
+        
+    }
     
+    //level up character
+    private void level_up(){
+        char_level ++;
+        char_str ++;
+        char_int++;
+        char_hp_max += rand_num.nextInt(10)+1;
+        
+    }
     
     
     
