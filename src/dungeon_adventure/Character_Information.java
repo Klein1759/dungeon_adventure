@@ -35,19 +35,7 @@ public class Character_Information {
     
     
     public Character_Information(){
-        char_level = 0;
-        char_hp = rand_num.nextInt(10)+1; //randomize this 10/level
-        char_str = 1; //randomize this
-        char_int = 1; //randomize this
-        char_gold = 0;
-        char_xp = 0;
-        char_hp_max = char_hp;
-        char_weapon_dmg = 6;
-        char_armor_class = 10;
-        //char_weapon = c_w;
-        //char_armor = c_a;
-        
-        level_up();
+       new_stats();
     }
     
     //set character level
@@ -201,6 +189,22 @@ public class Character_Information {
         
     }
     
+    //to create new random character stats
+    //like strength, hit points, and constitution
+    public void new_stats(){
+        char_level = 0;
+        char_hp = rand_num.nextInt(10)+1; //randomize this 10/level
+        char_str = 1; //randomize this
+        char_int = 1; //randomize this
+        char_gold = 0;
+        char_xp = 0;
+        char_hp_max = char_hp;
+        char_weapon_dmg = 6;
+        char_armor_class = 10;
+        //char_weapon = c_w;
+        //char_armor = c_a;
+        
+    }
     
     
     
