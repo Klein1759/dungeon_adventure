@@ -30,6 +30,7 @@ public class Character_Information {
     private int char_armor_class;
     private String char_weapon;
     private String char_armor;
+    private boolean in_combat = false;
     
     private Random rand_num = new Random();
     
@@ -146,6 +147,14 @@ public class Character_Information {
     //get character armor name
     public String get_char_armor(){
         return char_armor;
+    }
+    
+    public void set_in_combat(boolean yes_no){
+        in_combat = yes_no;
+    }
+    
+    public boolean get_in_combat(){
+        return in_combat;
     }
     
     //check against current level and xp to see if a new level is warranted
