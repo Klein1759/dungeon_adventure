@@ -18,7 +18,7 @@ import java.util.Random;
  * no larger than 100 creatures at the moment.
  */
 public class Monster_Information {
-    Random random_damage = new Random();
+    private Random random_damage = new Random();
     
     private int armor_class;
     private int thaco;
@@ -79,7 +79,7 @@ public class Monster_Information {
     }
     
     //calculate damage done
-    public int get_damage_done(){
+    private int get_damage_done(){
         damage = random_damage.nextInt(max_damage - min_damage + 1) + min_damage;
         return damage;
     }

@@ -19,6 +19,7 @@ import javax.swing.text.DefaultCaret;
  * @version 1.0
  */
 public class Dungeon_Adventure {
+    static Monster_Information[] creature;
     static Dungeon_Adventure_Display Dungeon_Display;
     static Dungeon_Level Dungeon_Info;
     static String info;
@@ -32,6 +33,7 @@ public class Dungeon_Adventure {
      */
     public static void main(String[] args) {
         
+        game_monster_initialization();
         game_initialization();
         game_key_processing();
         
@@ -220,4 +222,9 @@ public class Dungeon_Adventure {
         }
     }
     
+    //initialize each creature in an instance array of creatures of no more than 100
+    public static void game_monster_initialization(){
+        creature = new Monster_Information[101];
+        creature[1] = new Monster_Information(10, 20, 1, 6, 6, 20, "short sword");
+    }
 }
