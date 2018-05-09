@@ -225,6 +225,6 @@ public class Dungeon_Adventure {
     //initialize each creature in an instance array of creatures of no more than 100
     public static void game_monster_initialization(){
         creature = new Monster_Information[101];
-        creature[1] = new Monster_Information(10, 20, 1, 6, 6, 20, "short sword");
+        creature[1] = new Monster_Information(10, 20, 1, 6, 6, 20, "short sword", "skeleton");
     }
 }

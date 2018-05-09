@@ -20,6 +20,7 @@ import java.util.Random;
 public class Monster_Information {
     private Random random_damage = new Random();
     
+    private String name;
     private int armor_class;
     private int thaco;
     private int min_damage;
@@ -31,7 +32,7 @@ public class Monster_Information {
     private String attack_text;
     
     public Monster_Information (int ac, int tohit, int min_d, int max_d, int hp,
-            int xp, String type){
+            int xp, String type, String nm){
        
         armor_class = ac;
         thaco = tohit;
@@ -40,9 +41,14 @@ public class Monster_Information {
         hit_points = hp;
         xp_value = xp;
         attack_type = type;        
+        name = nm;
         
     }
     
+    //get name
+    public String get_name(){
+        return name;
+    }
     //get ac
     public int get_armor_class(){
         return armor_class;
