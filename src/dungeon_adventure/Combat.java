@@ -11,4 +11,9 @@ package dungeon_adventure;
  */
 public class Combat {
     
+    
+    public void encounter(Dungeon_Adventure_Display display, Character_Information character, Monster_Information monster){
+        
+        
+    }
 }
