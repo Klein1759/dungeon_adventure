@@ -21,9 +21,11 @@ package dungeon_adventure;
  * The fist 4 array items in [z] determine what direction is moveable
  * The 5th array item in [z] determines in there is a monster encounter
  * The 6th array item in [z] determines if there is anoter event
- * x, y, n, e, s, w, m, t
+ * x, y, n, e, s, w, m, a
  * For the diretions a 0 = nothing in that direction, a 1 = a wall in that direction
- * For m 0 = no monster, for t 0 = no treasure
+ * For m 0 = no monster, for a 0 = no action
+ * An action can include treaasure, stairs, or even a trap. 
+ * Actions will be impletmented later
  */
 public class Dungeon_Level {
     
