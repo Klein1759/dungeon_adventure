@@ -19,6 +19,7 @@ import javax.swing.text.DefaultCaret;
  * @version 1.0
  */
 public class Dungeon_Adventure {
+    static Character_Information character;
     static Monster_Information[] creature;
     static Dungeon_Adventure_Display Dungeon_Display;
     static Dungeon_Level Dungeon_Info;
@@ -44,6 +45,10 @@ public class Dungeon_Adventure {
         Dungeon_Info = new Dungeon_Level();  
         coords = new Compass_Location(0,0,0,0,1,1,1,0); //starting location
         
+        character = new Character_Information(); //character creation
+        //character.set_in_combat(true); //set for testing purposes
+
+        
         //auto scroll msgs to the bottom of display box
         DefaultCaret caret = (DefaultCaret)Dungeon_Display.display_box.getCaret();
         caret.setUpdatePolicy(DefaultCaret.ALWAYS_UPDATE);
@@ -62,7 +67,7 @@ public class Dungeon_Adventure {
         
         where_walls();
         location_visual=location_surrounding_walls();
-        Dungeon_Display.change_image(location_visual);
+        Dungeon_Display.set_image(location_visual);
     }
   
     public static void game_key_processing() {
@@ -93,15 +98,18 @@ public class Dungeon_Adventure {
     //move in direction facing unless wall is in the way, then process what the area looks like
     public static void move_forward(){
         
-        if (front_wall == 1) {
-            Dungeon_Display.add_text(cant_move_forward + "\n");
+        if (character.get_in_combat()== false){        
+            if (front_wall == 1) {
+                Dungeon_Display.add_text(cant_move_forward + "\n");
+            }
+            else {
+                move_in_facing_direction();            
+        }                
+        location_processing();
         }
         else {
-            move_in_facing_direction();            
-        }        
-        
-        location_processing();
-        
+            Dungeon_Display.add_text("You are in combate and cannot more forward." + "\n");
+        }
     }
     
     //turn left, set the direction, then process what the area looks like
@@ -129,7 +137,7 @@ public class Dungeon_Adventure {
         coords.set_direction_name();
         where_walls();
         location_visual=location_surrounding_walls();
-        Dungeon_Display.change_image(location_visual);
+        Dungeon_Display.set_image(location_visual);
         facing = "Facing " + coords.get_direction_name() + "\n";
         Dungeon_Display.add_text(facing);
         
