@@ -167,7 +167,7 @@ public class Dungeon_Adventure_Display extends JFrame{
     }
     
     //change the image in the display window
-    public void change_image(String img_location){
+    public void set_image(String img_location){
         display_label.setIcon(new ImageIcon("images/" + img_location));
     }
     
