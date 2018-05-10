@@ -153,7 +153,7 @@ public class Character_Information {
         in_combat = yes_no;
     }
     
-    public boolean get_in_combat(){
+    public boolean in_combat(){
         return in_combat;
     }
     

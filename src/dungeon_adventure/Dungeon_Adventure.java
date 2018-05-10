@@ -21,6 +21,7 @@ import javax.swing.text.DefaultCaret;
 public class Dungeon_Adventure {
     static Character_Information character;
     static Monster_Information[] creature;
+    static Combat encounter;
     static Dungeon_Adventure_Display Dungeon_Display;
     static Dungeon_Level Dungeon_Info;
     static String info;
@@ -48,6 +49,7 @@ public class Dungeon_Adventure {
         character = new Character_Information(); //character creation
         //character.set_in_combat(true); //set for testing purposes
 
+        encounter = new Combat();
         
         //auto scroll msgs to the bottom of display box
         DefaultCaret caret = (DefaultCaret)Dungeon_Display.display_box.getCaret();
@@ -98,7 +100,7 @@ public class Dungeon_Adventure {
     //move in direction facing unless wall is in the way, then process what the area looks like
     public static void move_forward(){
         
-        if (character.get_in_combat()== false){        
+        if (character.in_combat()== false){        
             if (front_wall == 1) {
                 Dungeon_Display.add_text(cant_move_forward + "\n");
             }
@@ -106,6 +108,7 @@ public class Dungeon_Adventure {
                 move_in_facing_direction();            
         }                
         location_processing();
+        encounter_processing();
         }
         else {
             Dungeon_Display.add_text("You are in combate and cannot more forward." + "\n");
@@ -114,22 +117,31 @@ public class Dungeon_Adventure {
     
     //turn left, set the direction, then process what the area looks like
     public static void turn_left(){
+        
+        if (character.in_combat()== false){ 
         coords.set_direction(coords.get_direction() - 1);
         if (coords.get_direction() == -1) {
             coords.set_direction(3);
+        }        
+        location_processing();    
         }
-        
-        location_processing();
+        else {
+            Dungeon_Display.add_text("You are in combate and cannot turn left." + "\n");
+        }
     }
-    
     //turn right, set the diretion, then process what the area looks like
     public static void turn_right(){
+        
+        if (character.in_combat()== false){ 
         coords.set_direction(coords.get_direction() + 1);
         if (coords.get_direction() == 4) {
             coords.set_direction(0);
-        }
-        
+        }        
         location_processing();
+        }
+        else {
+            Dungeon_Display.add_text("You are in combate and cannot turn right." + "\n");
+        }
     }
     
     //process what the area looks like
@@ -140,6 +152,16 @@ public class Dungeon_Adventure {
         Dungeon_Display.set_image(location_visual);
         facing = "Facing " + coords.get_direction_name() + "\n";
         Dungeon_Display.add_text(facing);
+        
+    }
+    
+    //determine if there is a creature encounter and sent it off to combat if there is
+    public static void encounter_processing(){
+        int monster = Dungeon_Info.dungeon_layout[coords.get_x_location()][coords.get_y_location()][3];
+        if (monster >=1 && monster <=100){
+            character.set_in_combat(true);
+            encounter.encounter(Dungeon_Display, character, creature[monster]);
+        }
         
     }
     
