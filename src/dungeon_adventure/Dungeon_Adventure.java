@@ -48,7 +48,7 @@ public class Dungeon_Adventure {
         
         character = new Character_Information(); //character creation
         //character.set_in_combat(true); //set for testing purposes
-
+        
         encounter = new Combat();
         
         //auto scroll msgs to the bottom of display box
@@ -59,6 +59,9 @@ public class Dungeon_Adventure {
         Dungeon_Display.dungeon_panel.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke(KeyEvent.VK_UP, 0), "move_forward");
         Dungeon_Display.dungeon_panel.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke(KeyEvent.VK_LEFT, 0), "turn_left");
         Dungeon_Display.dungeon_panel.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke(KeyEvent.VK_RIGHT, 0), "turn_right");
+        Dungeon_Display.dungeon_panel.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke(KeyEvent.VK_F, 0), "fight");
+        Dungeon_Display.dungeon_panel.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke(KeyEvent.VK_R, 0), "run");
+        
               
         //set up game when first loading up
         String welcome_text = "Welcome to Dungeon Adventure\nStay a while!\nStay forever!\n";
@@ -70,6 +73,7 @@ public class Dungeon_Adventure {
         where_walls();
         location_visual=location_surrounding_walls();
         Dungeon_Display.set_image(location_visual);
+                        
     }
   
     public static void game_key_processing() {
@@ -95,6 +99,20 @@ public class Dungeon_Adventure {
                 turn_right();
             }
         });
+        
+        Dungeon_Display.dungeon_panel.getActionMap().put("fight", new AbstractAction() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                //fight();
+            }
+        });
+        
+        Dungeon_Display.dungeon_panel.getActionMap().put("run", new AbstractAction() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                //run();
+            }
+        });
     }
     
     //move in direction facing unless wall is in the way, then process what the area looks like
@@ -105,6 +123,10 @@ public class Dungeon_Adventure {
                 Dungeon_Display.add_text(cant_move_forward + "\n");
             }
             else {
+                if (!(character.get_char_hp() >= character.get_char_hp_max())){
+                    character.set_char_hp(character.get_char_hp() + 1); //gain 1 HP with each valid forward move
+                    //Dungeon_Display.add_text("Current HP: " + character.get_char_hp() + "\n");
+                }
                 move_in_facing_direction();            
         }                
         location_processing();
