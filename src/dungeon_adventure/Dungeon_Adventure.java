@@ -118,14 +118,14 @@ public class Dungeon_Adventure {
     //move in direction facing unless wall is in the way, then process what the area looks like
     public static void move_forward(){
         
-        if (character.in_combat()== false){        
+        if (!(character.in_combat())){        
             if (front_wall == 1) {
                 Dungeon_Display.add_text(cant_move_forward + "\n");
             }
             else {
                 if (!(character.get_char_hp() >= character.get_char_hp_max())){
                     character.set_char_hp(character.get_char_hp() + 1); //gain 1 HP with each valid forward move
-                    //Dungeon_Display.add_text("Current HP: " + character.get_char_hp() + "\n");
+                    Dungeon_Display.add_text("Current HP: " + character.get_char_hp() + "\n");
                 }
                 move_in_facing_direction();            
         }                
@@ -179,8 +179,8 @@ public class Dungeon_Adventure {
     
     //determine if there is a creature encounter and sent it off to combat if there is
     public static void encounter_processing(){
-        int monster = Dungeon_Info.dungeon_layout[coords.get_x_location()][coords.get_y_location()][3];
-        if (monster >=1 && monster <=100){
+        int monster = Dungeon_Info.dungeon_layout[coords.get_x_location()][coords.get_y_location()][4];
+        if (monster >= 1){
             character.set_in_combat(true);
             encounter.encounter(Dungeon_Display, character, creature[monster]);
         }
