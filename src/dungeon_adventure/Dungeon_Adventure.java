@@ -180,7 +180,7 @@ public class Dungeon_Adventure {
     //determine if there is a creature encounter and sent it off to combat if there is
     public static void encounter_processing(){
         int monster = Dungeon_Info.dungeon_layout[coords.get_x_location()][coords.get_y_location()][4];
-        if (monster >= 1){
+        if (monster >= 1 && monster <= 100){
             character.set_in_combat(true);
             encounter.encounter(Dungeon_Display, character, creature[monster]);
         }
