@@ -13,7 +13,8 @@ public class Combat {
     
     
     public void encounter(Dungeon_Adventure_Display display, Character_Information character, Monster_Information monster){
-        display.addtext("Oh no");
-        
+       display.add_text("Oh no! You've encountered a " + monster.get_name() + "! \n");
+       display.add_text("Would you like to (R)un or (F)ight?\n");
+       monster.set_prompted_combat(true);
     }
 }
