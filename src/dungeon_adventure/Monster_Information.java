@@ -30,6 +30,7 @@ public class Monster_Information {
     private int damage;
     private String attack_type;
     private String attack_text;
+    private boolean prompted_combat = false;
     
     public Monster_Information (int ac, int tohit, int min_d, int max_d, int hp,
             int xp, String type, String nm){
@@ -94,5 +95,15 @@ public class Monster_Information {
     public String get_attack_text(){
         attack_text = "You've been hit by " + attack_type + " for a total of " + get_damage_done() + " damage.";
         return attack_text;
+    }
+    
+    //get prompted combat status
+    public boolean get_prompted_combat(){
+        return prompted_combat;
+    }
+    
+    //set prompted combat boolean
+    public void set_prompted_combat(boolean combat){
+        prompted_combat = combat;
     }
 }
