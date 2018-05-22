@@ -13,7 +13,7 @@ public class Combat {
     
     
     public void encounter(Dungeon_Adventure_Display display, Character_Information character, Monster_Information monster){
-        
+        display.addtext("Oh no");
         
     }
 }
