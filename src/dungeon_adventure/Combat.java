@@ -5,6 +5,8 @@
  */
 package dungeon_adventure;
 
+
+
 /**
  *
  * @author Scott
@@ -16,5 +18,9 @@ public class Combat {
        display.add_text("Oh no! You've encountered a " + monster.get_name() + "! \n");
        display.add_text("Would you like to (R)un or (F)ight?\n");
        monster.set_prompted_combat(true);
+       //char c = (char) System.in.read();
+       //display.add_text(c + "\n");
     }
+    
 }
+
