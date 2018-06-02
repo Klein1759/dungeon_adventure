@@ -24,7 +24,6 @@ public class Dungeon_Adventure {
     static Combat Encounter;
     static Dungeon_Adventure_Display Dungeon_Display;
     static Dungeon_Level Dungeon_Info;
-    static String info;
     static Compass_Location Coords;
     static String facing;
     static String location_visual;
