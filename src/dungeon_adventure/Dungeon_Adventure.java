@@ -132,9 +132,9 @@ public class Dungeon_Adventure {
         location_processing();
         encounter_processing();
         }
-        else {
+        /*else {
             Dungeon_Display.add_text("You are in combate and cannot more forward." + "\n");
-        }
+        }*/
     }
     
     //turn left, set the direction, then process what the area looks like
@@ -147,9 +147,9 @@ public class Dungeon_Adventure {
         }        
         location_processing();    
         }
-        else {
+        /*else {
             Dungeon_Display.add_text("You are in combate and cannot turn left." + "\n");
-        }
+        }*/
     }
     //turn right, set the diretion, then process what the area looks like
     public static void turn_right(){
@@ -161,9 +161,9 @@ public class Dungeon_Adventure {
         }        
         location_processing();
         }
-        else {
+        /*else {
             Dungeon_Display.add_text("You are in combate and cannot turn right." + "\n");
-        }
+        }*/
     }
     
     //process what the area looks like
