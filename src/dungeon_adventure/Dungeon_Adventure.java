@@ -275,9 +275,10 @@ public class Dungeon_Adventure {
         }
     }
     
-    //initialize each Creature in an instance array of creatures of no more than 100
+    //initialize each Creature in an instance array of creatures of no more than 100, but starting with 1 (not 0)
     public static void game_monster_initialization(){
         Creature = new Monster_Information[101];
+        // armor class, to hit, min_dam, max_dam, hp, xp, weapon type, name
         Creature[1] = new Monster_Information(10, 20, 1, 6, 6, 20, "short sword", "skeleton");
     }
 }
