@@ -276,6 +276,7 @@ public class Dungeon_Adventure {
     }
     
     //initialize each Creature in an instance array of creatures of no more than 100, but starting with 1 (not 0)
+    //want to eventually add pictures of the monsters to the instance
     public static void game_monster_initialization(){
         Creature = new Monster_Information[101];
         // armor class, to hit, min_dam, max_dam, hp, xp, weapon type, name
