@@ -19,13 +19,13 @@ import javax.swing.text.DefaultCaret;
  * @version 1.0
  */
 public class Dungeon_Adventure {
-    static Character_Information character;
-    static Monster_Information[] creature;
-    static Combat encounter;
+    static Character_Information Character;
+    static Monster_Information[] Creature;
+    static Combat Encounter;
     static Dungeon_Adventure_Display Dungeon_Display;
     static Dungeon_Level Dungeon_Info;
     static String info;
-    static Compass_Location coords;
+    static Compass_Location Coords;
     static String facing;
     static String location_visual;
     static int left_wall, right_wall, front_wall;
@@ -44,12 +44,12 @@ public class Dungeon_Adventure {
     public static void game_initialization() {
         Dungeon_Display = new Dungeon_Adventure_Display();
         Dungeon_Info = new Dungeon_Level();  
-        coords = new Compass_Location(0,0,0,0,1,1,1,0); //starting location
+        Coords = new Compass_Location(0,0,0,0,1,1,1,0); //starting location
         
-        character = new Character_Information(); //character creation
+        Character = new Character_Information(); //character creation
         //character.set_in_combat(true); //set for testing purposes
         
-        encounter = new Combat();
+        Encounter = new Combat();
         
         //auto scroll msgs to the bottom of display box
         DefaultCaret caret = (DefaultCaret)Dungeon_Display.display_box.getCaret();
@@ -66,8 +66,8 @@ public class Dungeon_Adventure {
         //set up game when first loading up
         String welcome_text = "Welcome to Dungeon Adventure\nStay a while!\nStay forever!\n";
         Dungeon_Display.add_text(welcome_text);   
-        coords.set_direction_name();
-        facing = "Facing " + coords.get_direction_name() + "\n";
+        Coords.set_direction_name();
+        facing = "Facing " + Coords.get_direction_name() + "\n";
         Dungeon_Display.add_text(facing);
         
         where_walls();
@@ -118,14 +118,14 @@ public class Dungeon_Adventure {
     //move in direction facing unless wall is in the way, then process what the area looks like
     public static void move_forward(){
         
-        if (!(character.in_combat())){        
+        if (!(Character.in_combat())){        
             if (front_wall == 1) {
                 Dungeon_Display.add_text(cant_move_forward + "\n");
             }
             else {
-                if (!(character.get_char_hp() >= character.get_char_hp_max())){
-                    character.set_char_hp(character.get_char_hp() + 1); //gain 1 HP with each valid forward move
-                    Dungeon_Display.add_text("Current HP: " + character.get_char_hp() + "\n");
+                if (!(Character.get_char_hp() >= Character.get_char_hp_max())){
+                    Character.set_char_hp(Character.get_char_hp() + 1); //gain 1 HP with each valid forward move
+                    Dungeon_Display.add_text("Current HP: " + Character.get_char_hp() + "\n");
                 }
                 move_in_facing_direction();            
         }                
@@ -140,10 +140,10 @@ public class Dungeon_Adventure {
     //turn left, set the direction, then process what the area looks like
     public static void turn_left(){
         
-        if (character.in_combat()== false){ 
-        coords.set_direction(coords.get_direction() - 1);
-        if (coords.get_direction() == -1) {
-            coords.set_direction(3);
+        if (Character.in_combat()== false){ 
+        Coords.set_direction(Coords.get_direction() - 1);
+        if (Coords.get_direction() == -1) {
+            Coords.set_direction(3);
         }        
         location_processing();    
         }
@@ -154,10 +154,10 @@ public class Dungeon_Adventure {
     //turn right, set the diretion, then process what the area looks like
     public static void turn_right(){
         
-        if (character.in_combat()== false){ 
-        coords.set_direction(coords.get_direction() + 1);
-        if (coords.get_direction() == 4) {
-            coords.set_direction(0);
+        if (Character.in_combat()== false){ 
+        Coords.set_direction(Coords.get_direction() + 1);
+        if (Coords.get_direction() == 4) {
+            Coords.set_direction(0);
         }        
         location_processing();
         }
@@ -168,21 +168,23 @@ public class Dungeon_Adventure {
     
     //process what the area looks like
     public static void location_processing(){
-        coords.set_direction_name();
+        Coords.set_direction_name();
         where_walls();
         location_visual=location_surrounding_walls();
         Dungeon_Display.set_image(location_visual);
-        facing = "Facing " + coords.get_direction_name() + "\n";
+        facing = "Facing " + Coords.get_direction_name() + "\n";
         Dungeon_Display.add_text(facing);
         
     }
     
     //determine if there is a creature encounter and sent it off to combat if there is
     public static void encounter_processing(){
-        int monster = Dungeon_Info.dungeon_layout[coords.get_x_location()][coords.get_y_location()][4];
+        int monster = Dungeon_Info.dungeon_layout[Coords.get_x_location()][Coords.get_y_location()][4];
         if (monster >= 1 && monster <= 100){
-            character.set_in_combat(true);
-            encounter.encounter(Dungeon_Display, character, creature[monster]);
+            Character.set_in_combat(true);
+            Dungeon_Display.add_text("Oh no! You've encountered a " + Creature[monster].get_name() + "! \n");
+            Dungeon_Display.add_text("Would you like to (R)un or (F)ight?\n");
+            Creature[monster].set_prompted_combat(true);
         }
         
     }
@@ -190,30 +192,30 @@ public class Dungeon_Adventure {
     //get surrouding wall location with regards to facting direction
     public static void where_walls(){
         
-        switch (coords.get_direction()) {
+        switch (Coords.get_direction()) {
             
             case 0:
-                left_wall = Dungeon_Info.dungeon_layout[coords.get_x_location()][coords.get_y_location()][3];
-                right_wall = Dungeon_Info.dungeon_layout[coords.get_x_location()][coords.get_y_location()][1];
-                front_wall = Dungeon_Info.dungeon_layout[coords.get_x_location()][coords.get_y_location()][0];
+                left_wall = Dungeon_Info.dungeon_layout[Coords.get_x_location()][Coords.get_y_location()][3];
+                right_wall = Dungeon_Info.dungeon_layout[Coords.get_x_location()][Coords.get_y_location()][1];
+                front_wall = Dungeon_Info.dungeon_layout[Coords.get_x_location()][Coords.get_y_location()][0];
                 break;
                 
             case 1:
-                left_wall = Dungeon_Info.dungeon_layout[coords.get_x_location()][coords.get_y_location()][0];
-                right_wall = Dungeon_Info.dungeon_layout[coords.get_x_location()][coords.get_y_location()][2];
-                front_wall = Dungeon_Info.dungeon_layout[coords.get_x_location()][coords.get_y_location()][1];
+                left_wall = Dungeon_Info.dungeon_layout[Coords.get_x_location()][Coords.get_y_location()][0];
+                right_wall = Dungeon_Info.dungeon_layout[Coords.get_x_location()][Coords.get_y_location()][2];
+                front_wall = Dungeon_Info.dungeon_layout[Coords.get_x_location()][Coords.get_y_location()][1];
                 break;
                 
             case 2:
-                left_wall = Dungeon_Info.dungeon_layout[coords.get_x_location()][coords.get_y_location()][1];
-                right_wall = Dungeon_Info.dungeon_layout[coords.get_x_location()][coords.get_y_location()][3];
-                front_wall = Dungeon_Info.dungeon_layout[coords.get_x_location()][coords.get_y_location()][2];
+                left_wall = Dungeon_Info.dungeon_layout[Coords.get_x_location()][Coords.get_y_location()][1];
+                right_wall = Dungeon_Info.dungeon_layout[Coords.get_x_location()][Coords.get_y_location()][3];
+                front_wall = Dungeon_Info.dungeon_layout[Coords.get_x_location()][Coords.get_y_location()][2];
                 break;
                 
             case 3:
-                left_wall = Dungeon_Info.dungeon_layout[coords.get_x_location()][coords.get_y_location()][2];
-                right_wall = Dungeon_Info.dungeon_layout[coords.get_x_location()][coords.get_y_location()][0];
-                front_wall = Dungeon_Info.dungeon_layout[coords.get_x_location()][coords.get_y_location()][3];
+                left_wall = Dungeon_Info.dungeon_layout[Coords.get_x_location()][Coords.get_y_location()][2];
+                right_wall = Dungeon_Info.dungeon_layout[Coords.get_x_location()][Coords.get_y_location()][0];
+                front_wall = Dungeon_Info.dungeon_layout[Coords.get_x_location()][Coords.get_y_location()][3];
                 break;
         }
     }
@@ -254,29 +256,29 @@ public class Dungeon_Adventure {
     // 0=North 1=East 2=South 3=West
     public static void move_in_facing_direction(){
         
-        switch (coords.get_direction()) {
+        switch (Coords.get_direction()) {
             
             case 0:
-                coords.set_x_location(coords.get_x_location()+1);
+                Coords.set_x_location(Coords.get_x_location()+1);
                 break;
                 
             case 1:
-                coords.set_y_location(coords.get_y_location()+1);
+                Coords.set_y_location(Coords.get_y_location()+1);
                 break;
                 
             case 2:
-                coords.set_x_location(coords.get_x_location()-1);
+                Coords.set_x_location(Coords.get_x_location()-1);
                 break;
                 
             case 3:
-                coords.set_y_location(coords.get_y_location()-1);
+                Coords.set_y_location(Coords.get_y_location()-1);
                 break;    
         }
     }
     
-    //initialize each creature in an instance array of creatures of no more than 100
+    //initialize each Creature in an instance array of creatures of no more than 100
     public static void game_monster_initialization(){
-        creature = new Monster_Information[101];
-        creature[1] = new Monster_Information(10, 20, 1, 6, 6, 20, "short sword", "skeleton");
+        Creature = new Monster_Information[101];
+        Creature[1] = new Monster_Information(10, 20, 1, 6, 6, 20, "short sword", "skeleton");
     }
 }
