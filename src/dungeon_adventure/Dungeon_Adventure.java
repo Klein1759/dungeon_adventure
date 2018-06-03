@@ -280,6 +280,8 @@ public class Dungeon_Adventure {
     public static void game_monster_initialization(){
         Creature = new Monster_Information[101];
         // armor class, to hit, min_dam, max_dam, hp, xp, weapon type, name
-        Creature[1] = new Monster_Information(10, 20, 1, 6, 6, 20, "short sword", "skeleton");
+        Creature[1] = new Monster_Information(10, 20, 1, 6, 6, 20, "short sword", "Skeleton");
+        Creature[2] = new Monster_Information(9, 20, 1, 6, 5, 20, "staff", "Adept");
+        Creature[3] = new Monster_Information(10, 20, 1, 4, 6, 15, "teeth", "Rat");
     }
 }
