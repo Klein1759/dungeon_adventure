@@ -51,15 +51,15 @@ public class Dungeon_Adventure {
         combat_Encounter = new Combat();
         
         //auto scroll msgs to the bottom of display box
-        DefaultCaret caret = (DefaultCaret)dungadvdisp_Dungeon_Display.display_box.getCaret();
+        DefaultCaret caret = (DefaultCaret)dungadvdisp_Dungeon_Display.jtxtarea_display_box.getCaret();
         caret.setUpdatePolicy(DefaultCaret.ALWAYS_UPDATE);
                 
         //Input Maps for arrow keys
-        dungadvdisp_Dungeon_Display.dungeon_panel.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke(KeyEvent.VK_UP, 0), "move_forward");
-        dungadvdisp_Dungeon_Display.dungeon_panel.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke(KeyEvent.VK_LEFT, 0), "turn_left");
-        dungadvdisp_Dungeon_Display.dungeon_panel.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke(KeyEvent.VK_RIGHT, 0), "turn_right");
-        dungadvdisp_Dungeon_Display.dungeon_panel.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke(KeyEvent.VK_F, 0), "fight");
-        dungadvdisp_Dungeon_Display.dungeon_panel.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke(KeyEvent.VK_R, 0), "run");
+        dungadvdisp_Dungeon_Display.jpanel_dungeon_panel.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke(KeyEvent.VK_UP, 0), "move_forward");
+        dungadvdisp_Dungeon_Display.jpanel_dungeon_panel.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke(KeyEvent.VK_LEFT, 0), "turn_left");
+        dungadvdisp_Dungeon_Display.jpanel_dungeon_panel.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke(KeyEvent.VK_RIGHT, 0), "turn_right");
+        dungadvdisp_Dungeon_Display.jpanel_dungeon_panel.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke(KeyEvent.VK_F, 0), "fight");
+        dungadvdisp_Dungeon_Display.jpanel_dungeon_panel.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke(KeyEvent.VK_R, 0), "run");
         
               
         //set up game when first loading up
@@ -78,35 +78,35 @@ public class Dungeon_Adventure {
     public static void game_key_processing() {
         //game engine procesing
         //Action Map for each arrow key leading to method for movement
-        dungadvdisp_Dungeon_Display.dungeon_panel.getActionMap().put("move_forward", new AbstractAction() {
+        dungadvdisp_Dungeon_Display.jpanel_dungeon_panel.getActionMap().put("move_forward", new AbstractAction() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 move_forward();
             }
         });
         
-        dungadvdisp_Dungeon_Display.dungeon_panel.getActionMap().put("turn_left", new AbstractAction() {
+        dungadvdisp_Dungeon_Display.jpanel_dungeon_panel.getActionMap().put("turn_left", new AbstractAction() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 turn_left();
             }
         });
         
-        dungadvdisp_Dungeon_Display.dungeon_panel.getActionMap().put("turn_right", new AbstractAction() {
+        dungadvdisp_Dungeon_Display.jpanel_dungeon_panel.getActionMap().put("turn_right", new AbstractAction() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 turn_right();
             }
         });
         
-        dungadvdisp_Dungeon_Display.dungeon_panel.getActionMap().put("fight", new AbstractAction() {
+        dungadvdisp_Dungeon_Display.jpanel_dungeon_panel.getActionMap().put("fight", new AbstractAction() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 //fight();
             }
         });
         
-        dungadvdisp_Dungeon_Display.dungeon_panel.getActionMap().put("run", new AbstractAction() {
+        dungadvdisp_Dungeon_Display.jpanel_dungeon_panel.getActionMap().put("run", new AbstractAction() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 //run();
