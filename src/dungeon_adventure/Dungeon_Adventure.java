@@ -25,10 +25,10 @@ public class Dungeon_Adventure {
     static Dungeon_Adventure_Display dungadvdisp_Dungeon_Display;
     static Dungeon_Level dunglvl_Dungeon_Info;
     static Compass_Location comploc_Coords;
-    static String facing;
-    static String location_visual;
-    static int left_wall, right_wall, front_wall;
-    static String cant_move_forward = "You hit your head on the wall as you cannot more forward.";
+    static String strFacing;
+    static String strLocation_visual;
+    static int intLeft_wall, intRight_wall, intFront_wall;
+    static String strCant_move_forward = "You hit your head on the wall as you cannot more forward.";
     /**
      * @param args the command line arguments
      */
@@ -66,12 +66,12 @@ public class Dungeon_Adventure {
         String welcome_text = "Welcome to Dungeon Adventure\nStay a while!\nStay forever!\n";
         dungadvdisp_Dungeon_Display.add_text(welcome_text);   
         comploc_Coords.set_direction_name();
-        facing = "Facing " + comploc_Coords.get_direction_name() + "\n";
-        dungadvdisp_Dungeon_Display.add_text(facing);
+        strFacing = "Facing " + comploc_Coords.get_direction_name() + "\n";
+        dungadvdisp_Dungeon_Display.add_text(strFacing);
         
         where_walls();
-        location_visual=location_surrounding_walls();
-        dungadvdisp_Dungeon_Display.set_image(location_visual);
+        strLocation_visual=location_surrounding_walls();
+        dungadvdisp_Dungeon_Display.set_image(strLocation_visual);
                         
     }
   
@@ -118,8 +118,8 @@ public class Dungeon_Adventure {
     public static void move_forward(){
         
         if (!(charinfo_Character.in_combat())){        
-            if (front_wall == 1) {
-                dungadvdisp_Dungeon_Display.add_text(cant_move_forward + "\n");
+            if (intFront_wall == 1) {
+                dungadvdisp_Dungeon_Display.add_text(strCant_move_forward + "\n");
             }
             else {
                 if (!(charinfo_Character.get_char_hp() >= charinfo_Character.get_char_hp_max())){
@@ -169,10 +169,10 @@ public class Dungeon_Adventure {
     public static void location_processing(){
         comploc_Coords.set_direction_name();
         where_walls();
-        location_visual=location_surrounding_walls();
-        dungadvdisp_Dungeon_Display.set_image(location_visual);
-        facing = "Facing " + comploc_Coords.get_direction_name() + "\n";
-        dungadvdisp_Dungeon_Display.add_text(facing);
+        strLocation_visual=location_surrounding_walls();
+        dungadvdisp_Dungeon_Display.set_image(strLocation_visual);
+        strFacing = "Facing " + comploc_Coords.get_direction_name() + "\n";
+        dungadvdisp_Dungeon_Display.add_text(strFacing);
         
     }
     
@@ -194,55 +194,55 @@ public class Dungeon_Adventure {
         switch (comploc_Coords.get_direction()) {
             
             case 0:
-                left_wall = dunglvl_Dungeon_Info.dungeon_layout[comploc_Coords.get_x_location()][comploc_Coords.get_y_location()][3];
-                right_wall = dunglvl_Dungeon_Info.dungeon_layout[comploc_Coords.get_x_location()][comploc_Coords.get_y_location()][1];
-                front_wall = dunglvl_Dungeon_Info.dungeon_layout[comploc_Coords.get_x_location()][comploc_Coords.get_y_location()][0];
+                intLeft_wall = dunglvl_Dungeon_Info.dungeon_layout[comploc_Coords.get_x_location()][comploc_Coords.get_y_location()][3];
+                intRight_wall = dunglvl_Dungeon_Info.dungeon_layout[comploc_Coords.get_x_location()][comploc_Coords.get_y_location()][1];
+                intFront_wall = dunglvl_Dungeon_Info.dungeon_layout[comploc_Coords.get_x_location()][comploc_Coords.get_y_location()][0];
                 break;
                 
             case 1:
-                left_wall = dunglvl_Dungeon_Info.dungeon_layout[comploc_Coords.get_x_location()][comploc_Coords.get_y_location()][0];
-                right_wall = dunglvl_Dungeon_Info.dungeon_layout[comploc_Coords.get_x_location()][comploc_Coords.get_y_location()][2];
-                front_wall = dunglvl_Dungeon_Info.dungeon_layout[comploc_Coords.get_x_location()][comploc_Coords.get_y_location()][1];
+                intLeft_wall = dunglvl_Dungeon_Info.dungeon_layout[comploc_Coords.get_x_location()][comploc_Coords.get_y_location()][0];
+                intRight_wall = dunglvl_Dungeon_Info.dungeon_layout[comploc_Coords.get_x_location()][comploc_Coords.get_y_location()][2];
+                intFront_wall = dunglvl_Dungeon_Info.dungeon_layout[comploc_Coords.get_x_location()][comploc_Coords.get_y_location()][1];
                 break;
                 
             case 2:
-                left_wall = dunglvl_Dungeon_Info.dungeon_layout[comploc_Coords.get_x_location()][comploc_Coords.get_y_location()][1];
-                right_wall = dunglvl_Dungeon_Info.dungeon_layout[comploc_Coords.get_x_location()][comploc_Coords.get_y_location()][3];
-                front_wall = dunglvl_Dungeon_Info.dungeon_layout[comploc_Coords.get_x_location()][comploc_Coords.get_y_location()][2];
+                intLeft_wall = dunglvl_Dungeon_Info.dungeon_layout[comploc_Coords.get_x_location()][comploc_Coords.get_y_location()][1];
+                intRight_wall = dunglvl_Dungeon_Info.dungeon_layout[comploc_Coords.get_x_location()][comploc_Coords.get_y_location()][3];
+                intFront_wall = dunglvl_Dungeon_Info.dungeon_layout[comploc_Coords.get_x_location()][comploc_Coords.get_y_location()][2];
                 break;
                 
             case 3:
-                left_wall = dunglvl_Dungeon_Info.dungeon_layout[comploc_Coords.get_x_location()][comploc_Coords.get_y_location()][2];
-                right_wall = dunglvl_Dungeon_Info.dungeon_layout[comploc_Coords.get_x_location()][comploc_Coords.get_y_location()][0];
-                front_wall = dunglvl_Dungeon_Info.dungeon_layout[comploc_Coords.get_x_location()][comploc_Coords.get_y_location()][3];
+                intLeft_wall = dunglvl_Dungeon_Info.dungeon_layout[comploc_Coords.get_x_location()][comploc_Coords.get_y_location()][2];
+                intRight_wall = dunglvl_Dungeon_Info.dungeon_layout[comploc_Coords.get_x_location()][comploc_Coords.get_y_location()][0];
+                intFront_wall = dunglvl_Dungeon_Info.dungeon_layout[comploc_Coords.get_x_location()][comploc_Coords.get_y_location()][3];
                 break;
         }
     }
     
     //determine where the walls are based on what's on the right, left and in front
     public static String location_surrounding_walls(){
-        if ((left_wall == 1) && (right_wall ==1) && (front_wall ==1)){
+        if ((intLeft_wall == 1) && (intRight_wall ==1) && (intFront_wall ==1)){
             return "square_1.jpg";
         } 
-        else if ((left_wall == 1) && (right_wall ==0) && (front_wall ==1)){
+        else if ((intLeft_wall == 1) && (intRight_wall ==0) && (intFront_wall ==1)){
             return "square_2.jpg";
         }
-        else if ((left_wall == 0) && (right_wall ==0) && (front_wall ==1)){
+        else if ((intLeft_wall == 0) && (intRight_wall ==0) && (intFront_wall ==1)){
             return "square_3.jpg";
         }
-        else if ((left_wall == 0) && (right_wall ==1) && (front_wall ==1)){
+        else if ((intLeft_wall == 0) && (intRight_wall ==1) && (intFront_wall ==1)){
             return "square_4.jpg";
         }
-        else if ((left_wall == 1) && (right_wall ==1) && (front_wall ==0)){
+        else if ((intLeft_wall == 1) && (intRight_wall ==1) && (intFront_wall ==0)){
             return "square_5.jpg";
         }
-        else if ((left_wall == 1) && (right_wall ==0) && (front_wall ==0)){
+        else if ((intLeft_wall == 1) && (intRight_wall ==0) && (intFront_wall ==0)){
             return "square_6.jpg";
         }
-        else if ((left_wall == 0) && (right_wall ==1) && (front_wall ==0)){
+        else if ((intLeft_wall == 0) && (intRight_wall ==1) && (intFront_wall ==0)){
             return "square_7.jpg";
         }
-        else if ((left_wall == 0) && (right_wall ==0) && (front_wall ==0)){
+        else if ((intLeft_wall == 0) && (intRight_wall ==0) && (intFront_wall ==0)){
             return "square_8.jpg";
         }
         
